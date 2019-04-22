@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <record id="invoiced_transaction_view_form" model="ir.ui.view">
+      <field name="name">invoiced.transaction.form</field>
+      <field name="model">invoiced.transaction</field>
+      <field name="arch" type="xml">
+        <form string="InvoicedTransaction">
+          <header>
+            <button name="generate_transaction" icon="fa-file-text" attrs="{'invisible': [('final', '=', True)]}"
+              string="Generate Transaction" class="oe_highlight" type="object"/>
+            <button name="finalize_document" icon="fa-foursquare" attrs="{'invisible': ['|', ('final', '=', True), ('excel_file', 'in', [False])]}"
+              string="Finalize Report" class="oe_highlight" type="object"/>
+          </header>
+          <sheet>
+            <h3>
+              <field name="name" readonly="1"/>
+            </h3>
+            <group>
+                <field name="excel_file" readonly="1" filename="file_name"/>
+                <field name="file_name" invisible="1"/>
+            </group>
+            <group>
+              <group>
+                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                <!-- <label for="open_invoice" invisible="1" string="Invoice Status"/>
+                <div>
+                  <label for="open_invoice" invisible="1" class="oe_inline"/>
+                  <field name="open_invoice" invisible="1" class="oe_inline"/>
+                  <label for="paid_invoice" invisible="1" class="oe_inline"/>
+                  <field name="paid_invoice" invisible="1" class="oe_inline"/>
+                </div>
+                <field name="inv_type" invisible="1"/> -->
+                <!-- <field name="filter_type" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/> -->
+                <label for="date_start"/>
+                <div>
+                  <field name="date_start" class="oe_inline" attrs="{'required': [('date_end', 'not in', [False])]}"/>
+                  <label for="date_end" class="oe_inline" string=" - "/>
+                  <field name="date_end" class="oe_inline" attrs="{'required': [('date_start', 'not in', [False])]}"/>
+                </div>
+                <!-- <field name="period_id"  attrs="{'invisible': [('filter_type', 'not in', ['Period', False])], 'required': [('filter_type', 'in', ['Period'])]}"/> -->
+              </group>
+              <group>
+                <field name="date_run" readonly="1"/>
+                <field name="user_id" readonly="1"/>
+                <field name="final" readonly="1"/>
+              </group>
+            </group>
+            <group string="Transaction/s" name="transaction">
+              <field name="line_ids" colspan="2" nolabel="1" readonly="1">
+                <tree string="Transaction" editable="top">
+                  <field name="date"/>
+                  <field name="invoice_id"/>
+                  <field name="reference_number"/>
+                  <field name="partner_id"/>
+                  <field name="description"/>
+                  <field name="coa_code"/>
+                  <field name="qty"/>
+                  <field name="price"/>
+                  <field name="transaction_tax_ids" widget="many2many_tags"/>
+                  <field name="cwt" string="Withholding Tax"/>
+                  <field name="vat_amount_exclusive" string="Vat Amount"/>
+                  <field name="net"/>
+                </tree>
+              </field>
+            </group>
+          </sheet>
+          <div class="oe_chatter">
+          	<field name="message_follower_ids" widget="mail_followers"/>
+          	<field name="message_ids" widget="mail_thread"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+    <record id="invoiced_transaction_view_tree" model="ir.ui.view">
+      <field name="name">invoiced.transaction.tree</field>
+      <field name="model">invoiced.transaction</field>
+      <field name="arch" type="xml">
+        <tree string="InvoicedTransaction">
+          <field name="name"/>
+          <field name="date_run"/>
+          <field name="user_id"/>
+          <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+          <field name="final" widget="boolean_toggle" attrs="{'invisible': [('final', '=', True)]}"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="invoiced_transaction_view_search" model="ir.ui.view">
+      <field name="name">invoiced.transaction.search</field>
+      <field name="model">invoiced.transaction</field>
+      <field name="arch" type="xml">
+        <search string="InvoicedTransaction">
+          <field name="name"/>
+          <field name="file_name"/>
+          <field name="date_run"/>
+          <field name="user_id"/>
+          <field name="company_id" groups="base.group_multi_company"/>
+          <field name="date_start"/>
+          <field name="date_end"/>
+          <filter name="final" string="Finalized" domain="[('final','=',True)]"/>
+          <filter string="Company" groups="base.group_multi_company" context="{'group_by':'company_id'}"/>
+        </search>
+      </field>
+    </record>
+
+    <record id="sale_invoiced_transaction_action_form" model="ir.actions.act_window">
+      <field name="name">Sales Transaction</field>
+      <field name="res_model">invoiced.transaction</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'default_inv_type': "Sale", 'search_default_final':1}</field>
+      <field name="domain">[('inv_type', '=', "Sale")]</field>
+    </record>
+
+    <menuitem action="sale_invoiced_transaction_action_form" id="menu_invoiced_transaction_action_form" parent="account.account_reports_management_menu" groups="account.group_account_user" sequence="1"/>
+
+    <record id="purchased_invoiced_transaction_action_form" model="ir.actions.act_window">
+      <field name="name">Purchase Transaction</field>
+      <field name="res_model">invoiced.transaction</field>
+      <field name="view_mode">tree,form</field>
+      <field name="context">{'default_inv_type': "Purchase", 'search_default_final':1}</field>
+      <field name="domain">[('inv_type', '=', "Purchase")]</field>
+    </record>
+
+    <menuitem action="purchased_invoiced_transaction_action_form" id="menu_purchase_invoiced_transaction_action_form" parent="account.account_reports_management_menu" groups="account.group_account_user" sequence="1"/>
+  </data>
+</odoo>
