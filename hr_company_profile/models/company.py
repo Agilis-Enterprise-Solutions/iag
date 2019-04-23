@@ -136,7 +136,7 @@ class ResCompany(models.Model):
     rdo = fields.Char(string="RDO", size=3)
     line_of_business_id = fields.Many2one('line.of.business', string="Line of Business", requied=True)
     established_date = fields.Date(string="Established Date")
-    classification = fields.Selection([('person', 'Individual'), ('company', 'Non-Individual')], string="Classication", requied=True, default="Non-Individual")
+    classification = fields.Selection([('person', 'Individual'), ('company', 'Non-Individual')], string="Classication", requied=True, default="company")
     tax_type = fields.Selection([('Percentage Tax', 'Percentage Tax'), ('Value Added Tax', 'Value Added Tax'), ('Tax Exempt', 'Tax Exempt ')],
                                 string="Tax Exemption Type")
     tax_rate_type = fields.Selection([
