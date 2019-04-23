@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <record id="sequence_sale_invoice_transaction" model="ir.sequence">
+        <field name="name">Sale invoices transaction sequence</field>
+        <field name="code">sale.invoice.transaction.action</field>
+        <field name="prefix">SALE-Transaction/%(range_year)s/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field eval="False" name="company_id"/>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="sequence_purchase_invoice_transaction" model="ir.sequence">
+        <field name="name">Purchase invoices transaction sequence</field>
+        <field name="code">purchase.invoice.transaction.action</field>
+        <field name="prefix">Purchase-Transaction/%(range_year)s/</field>
+        <field eval="1" name="number_next"/>
+        <field eval="1" name="number_increment"/>
+        <field eval="True" name="use_date_range"/>
+        <field eval="False" name="company_id"/>
+        <field name="padding">4</field>
+    </record>
+
+    <record id="bir_chart_of_account401" model="bir.chart.of.account">
+      <field name="name">Sale of Goods/Properties</field>
+      <field name="code">401</field>
+      <field name="category">Sales/Revenues/Receipts/Fees</field>
+      <field name="description">Income collected from consumption of goods as well as transaction of properties</field>
+    </record>
+
+    <record id="bir_chart_of_account402" model="bir.chart.of.account">
+      <field name="name">Sale of Services</field>
+      <field name="code">402</field>
+      <field name="category">Sales/Revenues/Receipts/Fees</field>
+      <field name="description">Income gathered from services rendered by individual(s)</field>
+    </record>
+
+    <record id="bir_chart_of_account403" model="bir.chart.of.account">
+      <field name="name">Lease of Properties</field>
+      <field name="code">403</field>
+      <field name="category">Sales/Revenues/Receipts/Fees</field>
+      <field name="description">Refers to income gathered from lease agreements on properties</field>
+    </record>
+
+    <record id="bir_chart_of_account404" model="bir.chart.of.account">
+      <field name="name">Sales Returns, Allowances and Discounts</field>
+      <field name="code">404</field>
+      <field name="category">Sales/Revenues/Receipts/Fees</field>
+      <field name="description">Income collected from discounts and return of damaged goods/services</field>
+    </record>
+
+
+
+    <record id="bir_chart_of_account501" model="bir.chart.of.account">
+      <field name="name">Merchandise Inventory, Beginning</field>
+      <field name="code">501</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Refers to inventory value during the start of the accounting period</field>
+    </record>
+
+    <record id="bir_chart_of_account502" model="bir.chart.of.account">
+      <field name="name">Purchases of Merchandise</field>
+      <field name="code">502</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Cost of purchase on goods that are intended for resale</field>
+    </record>
+
+    <record id="bir_chart_of_account503" model="bir.chart.of.account">
+      <field name="name">Merchandise Inventory, Ending</field>
+      <field name="code">503</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Amount of inventory at the end of accounting period</field>
+    </record>
+
+    <record id="bir_chart_of_account504" model="bir.chart.of.account">
+      <field name="name">Direct Materials, Beginning</field>
+      <field name="code">504</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Materials/supplies consumed during the start of accounting period</field>
+    </record>
+
+    <record id="bir_chart_of_account505" model="bir.chart.of.account">
+      <field name="name">Purchases of Direct Materials</field>
+      <field name="code">505</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Cost of materials and supplies that are consumed during the taxable year</field>
+    </record>
+
+    <record id="bir_chart_of_account506" model="bir.chart.of.account">
+      <field name="name">Direct Materials, Ending</field>
+      <field name="code">506</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Materials/supplies consumed during the end of accounting period</field>
+    </record>
+
+    <record id="bir_chart_of_account507" model="bir.chart.of.account">
+      <field name="name">Direct Labor</field>
+      <field name="code">507</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">These are amounts that are charged on the production of goods/services</field>
+    </record>
+
+    <record id="bir_chart_of_account508" model="bir.chart.of.account">
+      <field name="name">Manufacturing Overhead</field>
+      <field name="code">508</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Manufacturing amounts that are neither direct materials cost nor direct labor cost</field>
+    </record>
+
+    <record id="bir_chart_of_account509" model="bir.chart.of.account">
+      <field name="name">Work in Process, Beginning</field>
+      <field name="code">509</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Refers to the start of your work-in-process inventory</field>
+    </record>
+
+    <record id="bir_chart_of_account510" model="bir.chart.of.account">
+      <field name="name">Work in Process, Ending</field>
+      <field name="code">510</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Refers to the end of your work-in-process inventory</field>
+    </record>
+
+    <record id="bir_chart_of_account511" model="bir.chart.of.account">
+      <field name="name">Finished Goods, Beginning</field>
+      <field name="code">511</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">This refers to finished goods inventory during the start of the year</field>
+    </record>
+
+    <record id="bir_chart_of_account512" model="bir.chart.of.account">
+      <field name="name">Finished Goods, Ending</field>
+      <field name="code">512</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Finished goods inventory at the end of the year</field>
+    </record>
+
+    <record id="bir_chart_of_account513" model="bir.chart.of.account">
+      <field name="name">Direct Charges - Salaries, Wages and Benefits</field>
+      <field name="code">513</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Refers to salaries and wages during the course of the current accounting period</field>
+    </record>
+
+    <record id="bir_chart_of_account514" model="bir.chart.of.account">
+      <field name="name">Direct Charges - Materials, Supplies and Facilities</field>
+      <field name="code">514</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Costs in purchase of materials and business equipment</field>
+    </record>
+
+    <record id="bir_chart_of_account515" model="bir.chart.of.account">
+      <field name="name">Direct Charges - Depreciation</field>
+      <field name="code">515</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">The cost of asset based on its useful life consumed during the taxable year</field>
+    </record>
+
+    <record id="bir_chart_of_account516" model="bir.chart.of.account">
+      <field name="name">Direct Charges - Rental</field>
+      <field name="code">516</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Amounts that were advanced/deposited for the lease/rentals of a specific property</field>
+    </record>
+
+    <record id="bir_chart_of_account517" model="bir.chart.of.account">
+      <field name="name">Direct Charges - Outside Services</field>
+      <field name="code">517</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">This refers to the amount that you pay for  independent contractors</field>
+    </record>
+
+    <record id="bir_chart_of_account518" model="bir.chart.of.account">
+      <field name="name">Direct Charges - Others</field>
+      <field name="code">518</field>
+      <field name="category">Cost of Sales and Services</field>
+      <field name="description">Other expenses to be deducted as authorized by the BIR</field>
+    </record>
+
+
+    <record id="bir_chart_of_account601" model="bir.chart.of.account">
+      <field name="name">Advertising and Promotions</field>
+      <field name="code">601</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost in advertising within materials such as newspapers/magazines/television/radio/other forms of media</field>
+    </record>
+
+    <record id="bir_chart_of_account602" model="bir.chart.of.account">
+      <field name="name">Amortizations</field>
+      <field name="code">602</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost of deductions imposed on the allocation of intangible asset</field>
+    </record>
+
+    <record id="bir_chart_of_account603" model="bir.chart.of.account">
+      <field name="name">Bad Debts</field>
+      <field name="code">603</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Refers to amount of uncollected receivables</field>
+    </record>
+
+    <record id="bir_chart_of_account604" model="bir.chart.of.account">
+      <field name="name">Charitable Contributions</field>
+      <field name="code">604</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">These are charitable contributions made by the organization</field>
+    </record>
+
+    <record id="bir_chart_of_account605" model="bir.chart.of.account">
+      <field name="name">Commissions</field>
+      <field name="code">605</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">These are fees paid to a sales personnel, in exchange for his/her services</field>
+    </record>
+
+    <record id="bir_chart_of_account606" model="bir.chart.of.account">
+      <field name="name">Communication, Light and Water</field>
+      <field name="code">606</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Itemized deductions for important utilites such as light, water and telecommunication</field>
+    </record>
+
+    <record id="bir_chart_of_account607" model="bir.chart.of.account">
+      <field name="name">Depletion</field>
+      <field name="code">607</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Costs acquired from extraction of natural resources (e.g. oil, minerals, timber, etc.)</field>
+    </record>
+
+    <record id="bir_chart_of_account608" model="bir.chart.of.account">
+      <field name="name">Depreciation</field>
+      <field name="code">608</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">The cost of asset based on its useful life consumed during the taxable year</field>
+    </record>
+
+    <record id="bir_chart_of_account609" model="bir.chart.of.account">
+      <field name="name">Director's Fees</field>
+      <field name="code">609</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost acquired for services rendered by members of the Board of Directors</field>
+    </record>
+
+    <record id="bir_chart_of_account610" model="bir.chart.of.account">
+      <field name="name">Fringe Benefits</field>
+      <field name="code">610</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Extra benefits that serves as additional compensation given to employees (e.g bonus, privelege etc.)</field>
+    </record>
+
+    <record id="bir_chart_of_account611" model="bir.chart.of.account">
+      <field name="name">Fuel and Oil</field>
+      <field name="code">611</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost acquired for usage of gasoline, oil and other petroleum products</field>
+    </record>
+
+    <record id="bir_chart_of_account612" model="bir.chart.of.account">
+      <field name="name">Insurance</field>
+      <field name="code">612</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Refers to the cost of premiums on insurances</field>
+    </record>
+
+    <record id="bir_chart_of_account613" model="bir.chart.of.account">
+      <field name="name">Interest</field>
+      <field name="code">613</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost imposed on the use of borrowed money</field>
+    </record>
+
+    <record id="bir_chart_of_account614" model="bir.chart.of.account">
+      <field name="name">Janitorial and Messengerial Services</field>
+      <field name="code">614</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">The cost of janitorial services under contract with the government</field>
+    </record>
+
+    <record id="bir_chart_of_account615" model="bir.chart.of.account">
+      <field name="name">Losses</field>
+      <field name="code">615</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Refers to any decrease in net income</field>
+    </record>
+
+    <record id="bir_chart_of_account616" model="bir.chart.of.account">
+      <field name="name">Management and Consultancy Fee</field>
+      <field name="code">616</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost on hiring consultants for special and technical services</field>
+    </record>
+
+    <record id="bir_chart_of_account617" model="bir.chart.of.account">
+      <field name="name">Miscellaneous</field>
+      <field name="code">617</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Other amounts that were classified under specific confidential, intelligence and extraordinary expense accounts</field>
+    </record>
+
+    <record id="bir_chart_of_account618" model="bir.chart.of.account">
+      <field name="name">Office Supplies</field>
+      <field name="code">618</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost for office supplies (including janitorial) whether issued or used</field>
+    </record>
+
+    <record id="bir_chart_of_account619" model="bir.chart.of.account">
+      <field name="name">Other Services</field>
+      <field name="code">619</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Refers to cost acquired from doing additional services</field>
+    </record>
+
+    <record id="bir_chart_of_account620" model="bir.chart.of.account">
+      <field name="name">Professional Fees</field>
+      <field name="code">620</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Taxes on individuals engaged in exercise/practice of their professions</field>
+    </record>
+
+    <record id="bir_chart_of_account621" model="bir.chart.of.account">
+      <field name="name">Rental</field>
+      <field name="code">621</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Amounts that were advanced/deposited for the lease/rental of a specific property</field>
+    </record>
+
+    <record id="bir_chart_of_account622" model="bir.chart.of.account">
+      <field name="name">Repairs and Maintenance - (Labor or Labor And Materials)</field>
+      <field name="code">622</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost acquired upon the repair and maintenance of business assets</field>
+    </record>
+
+    <record id="bir_chart_of_account623" model="bir.chart.of.account">
+      <field name="name">Repairs and Maintenance - (Materials/Supplies)</field>
+      <field name="code">623</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost for repairing and maintenance of materials/supplies</field>
+    </record>
+
+    <record id="bir_chart_of_account624" model="bir.chart.of.account">
+      <field name="name">Representation and Entertainment</field>
+      <field name="code">624</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Refers to expenses that were used in entertaining guests/employees</field>
+    </record>
+
+    <record id="bir_chart_of_account625" model="bir.chart.of.account">
+      <field name="name">Research and Development</field>
+      <field name="code">625</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost acquired upon the search for knowledge and converting that knowledge into new product/process</field>
+    </record>
+
+    <record id="bir_chart_of_account626" model="bir.chart.of.account">
+      <field name="name">Royalties</field>
+      <field name="code">626</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Refers to amounts given by the licensee for use of assets, as owned by the licensor</field>
+    </record>
+
+    <record id="bir_chart_of_account627" model="bir.chart.of.account">
+      <field name="name">Salaries and Allowances</field>
+      <field name="code">627</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Pay proper and other forms of allowances given within the taxable year</field>
+    </record>
+
+    <record id="bir_chart_of_account628" model="bir.chart.of.account">
+      <field name="name">Security Services</field>
+      <field name="code">628</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Cost of security services that are under contract with the government</field>
+    </record>
+
+    <record id="bir_chart_of_account629" model="bir.chart.of.account">
+      <field name="name">SSS, GSIS, Philhealth, HDMF and Other Contributions</field>
+      <field name="code">629</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Refers to contributions made to government agencies such as SSS, Philihealth, etc.</field>
+    </record>
+
+    <record id="bir_chart_of_account630" model="bir.chart.of.account">
+      <field name="name">Taxes and Licenses</field>
+      <field name="code">630</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Amount of expenses for taxes, duties and licenses</field>
+    </record>
+
+    <record id="bir_chart_of_account631" model="bir.chart.of.account">
+      <field name="name">Tolling Fees</field>
+      <field name="code">631</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Fees for usage of roads/bridges/ferries/piers and terminals</field>
+    </record>
+
+    <record id="bir_chart_of_account632" model="bir.chart.of.account">
+      <field name="name">Training and Seminars</field>
+      <field name="code">632</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Fees for training, conducted seminars, events, etc.</field>
+    </record>
+
+    <record id="bir_chart_of_account633" model="bir.chart.of.account">
+      <field name="name">Transportation and Travel</field>
+      <field name="code">633</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Expenses incurred from travel, including transportation</field>
+    </record>
+
+    <record id="bir_chart_of_account634" model="bir.chart.of.account">
+      <field name="name">Others</field>
+      <field name="code">634</field>
+      <field name="category">Ordinary Allowable Itemized Deductions</field>
+      <field name="description">Other expenses to be deducted as authorized by the BIR</field>
+    </record>
+
+
+    <record id="bir_chart_of_account900" model="bir.chart.of.account">
+      <field name="name">Property, Plant and Equipment - Net</field>
+      <field name="code">900</field>
+      <field name="category">Property, Plant and Equipment - Net</field>
+    </record>
+
+
+    <record id="bir_chart_of_account150" model="bir.chart.of.account">
+      <field name="name">Input VAT</field>
+      <field name="code">150</field>
+      <field name="category">Input VAT</field>
+      <field name="description">Input VAT</field>
+    </record>
+
+    <record id="bir_chart_of_account155" model="bir.chart.of.account">
+      <field name="name">Prepaid Tax Payable</field>
+      <field name="code">155</field>
+      <field name="category">Prepaid Tax Payable</field>
+      <field name="description">Prepaid Tax Payable</field>
+    </record>
+
+    <record id="bir_chart_of_account250" model="bir.chart.of.account">
+      <field name="name">Output VAT</field>
+      <field name="code">250</field>
+      <field name="category">Output VAT</field>
+      <field name="description">Output VAT</field>
+    </record>
+
+    <record id="bir_chart_of_account255" model="bir.chart.of.account">
+      <field name="name">WT Payable</field>
+      <field name="code">255</field>
+      <field name="category">WT Payable</field>
+      <field name="description">WT Payable</field>
+    </record>
+
+    <record id="bir_chart_of_account355" model="bir.chart.of.account">
+      <field name="name">WT Payable</field>
+      <field name="code">355</field>
+      <field name="category">WT Payable</field>
+      <field name="description">WT Payable</field>
+    </record>
+
+    <record id="bir_chart_of_account350" model="bir.chart.of.account">
+      <field name="name">Percentage Tax</field>
+      <field name="code">350</field>
+      <field name="category">Percentage Tax</field>
+      <field name="description">Percentage Tax</field>
+    </record>
+
+
+  </data>
+</odoo>
